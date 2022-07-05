@@ -1,0 +1,54 @@
+        <div class="navigation-section">
+			<nav class="navbar m-menu navbar-default">
+				<div class="container">
+					<!-- Brand and toggle get grouped for better mobile display -->
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+								data-target="#navbar-collapse-1"><span class="sr-only">Toggle navigation</span> <span
+								class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+						</button>
+					</div>
+					<!-- Collect the nav links, forms, and other content for toggling -->
+					<div class="collapse navbar-collapse" id="#navbar-collapse-1">
+						<ul class="nav navbar-nav main-nav">
+							<li class="active"><a href="/">Home</a></li>
+							{% for seccion in secciones %}
+							
+								<li><a href="/paginas/{{seccion.id}}">{{seccion.nombre}}</a></li>
+
+							{% endfor %}
+
+							{% if request.user.is_authenticated %}
+								<li class="dropdown m-menu-fw"><a href="#" data-toggle="dropdown" class="dropdown-toggle">Mas
+									<span><i class="fa fa-angle-down"></i></span></a>
+									<ul class="dropdown-menu">
+										<li>
+											<div class="m-menu-content">
+												<ul class="col-sm-6">
+													<li class="dropdown-header">Paginas</li>
+													<li><a href="/paginas/crear-pagina">Crear Página</a></li>
+												</ul>
+												{% if request.user.is_staff %} 
+												<ul class="col-sm-6">
+													<li class="dropdown-header">Usuarios</li>
+													<li><a href="#">Listar Usuarios</a></li>
+													{% if request.user.is_superuser %} 
+														<li><a href="">Editar Usuario</a></li>
+														<li><a href="#">Eliminar Usuario</a></li>
+													{% endif %}
+												</ul>																							
+												{% endif %}
+											</div>
+										</li>
+									</ul>
+								</li>
+							{% endif %}
+						</ul>
+					</div>
+					<!-- .navbar-collapse -->
+				</div>
+				<!-- .container -->
+			</nav>
+			<!-- .nav -->
+		</div>
+		<!-- .navigation-section -->
